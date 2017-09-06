@@ -127,7 +127,7 @@ export default class ChooseStaffs extends Component {
             departList.push(
                 <TouchableHighlight key={i}
                                     onPress={this._nextDepart.bind(this,departData[i].id,departData[i].depart_name)}
-                                    underlayColor={'#F3F3F3'}>
+                                    underlayColor={'transparent'}>
                     <View style={styles.listRowContent}>
                         <View style={styles.listRowSide}>
                             <CheckBox
@@ -157,7 +157,7 @@ export default class ChooseStaffs extends Component {
             userList.push(
                 <TouchableHighlight key={i}
                                     onPress={this._pressUser.bind(this,i)}
-                                    underlayColor={'#F3F3F3'}>
+                                    underlayColor={'transparent'}>
                     <View style={styles.listRowContent}>
                         <View style={styles.listRowSide}>
                             <CheckBox

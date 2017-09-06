@@ -17,6 +17,7 @@ import {
 import config from '../common/config';
 import request from '../common/request';
 import toast from '../common/toast';
+import Header from '../common/header';
 export default class ModifyPassword extends Component {
     //添加职位信息或修改
     constructor(props) {
@@ -102,37 +103,17 @@ export default class ModifyPassword extends Component {
         const {params} = this.props.navigation.state;
         return (
             <View style={styles.ancestorCon}>
-                <View style={styles.container}>
-                    <TouchableOpacity
-                        onPress={()=>this.OpBack()}
-                        >
-                        <View style={styles.backAll}>
-                            <Image style={styles.back} source={require('../imgs/lljt.png')}/>
-                            <Text style={styles.backwz}>
-                                返回
-                            </Text>
+                <Header navigation = {this.props.navigation}
+                        title = "修改登录密码"
+                        rightText = "保存"
+                        onPress={()=>this.OpBack()}/>
+                <View style={{width:screenW,marginTop:10,backgroundColor:'#fff',paddingLeft:15,paddingRight:15,borderColor:'#e8e8e8',borderBottomWidth:1,borderTopWidth:1}}>
+                    <View style={{flexDirection: 'row',alignItems:'center',height:35,borderColor:'#e8e8e8',borderBottomWidth:1,paddingLeft:5,paddingRight:5}}>
+                        <View style={{width:screenW*0.2}}>
+                            <Text style={{color:'#333'}}>原密码</Text>
                         </View>
-                    </TouchableOpacity>
-                    <Text style={styles.info}
-                        >修改密码
-                    </Text>
-                    <TouchableHighlight
-                        onPress={()=>this.modifypwd()}
-                        underlayColor="#d5d5d5"
-                        >
-                        <View>
-                            <Text
-                                onPress={this.modifypwd.bind(this)} style={styles.infoSave}>
-                                保存
-                            </Text>
-                        </View>
-                    </TouchableHighlight>
-                </View>
-                <View style={{flexDirection: 'column',width:screenW,alignItems:'center',marginTop:10,backgroundColor:'#fff'}}>
-                    <View style={{flexDirection: 'row',alignItems:'center',marginTop:10,marginLeft:screenW*0.2}}>
-                        <Text style={{marginRight:5,paddingTop:5}}>原密码：</Text>
                         <TextInput
-                            style={{color:'#cbb',width:screenW*0.4,padding:0,marginRight:screenW*0.1}}
+                            style={{color:'#aaa',width:screenW*0.4,padding:0,height:30,marginLeft:15}}
                             onChangeText={(oldpwd) => this.setState({oldpwd})}
                             placeholder='请输入原密码'
                             secureTextEntry={true}
@@ -140,12 +121,15 @@ export default class ModifyPassword extends Component {
                             placeholderTextColor ={"#CFCFCF"}
                             onBlur={()=>this.confirm()}
                             value={this.state.oldpwd}
+                            autoFocus={true}
                             />
                     </View>
-                    <View style={{flexDirection: 'row',alignItems:'center',marginTop:6,marginLeft:screenW*0.2}}>
-                        <Text style={{marginRight:5}}>新密码：</Text>
+                    <View style={{flexDirection: 'row',alignItems:'center',height:35,borderColor:'#e8e8e8',borderBottomWidth:1,paddingLeft:5,paddingRight:5}}>
+                        <View style={{width:screenW*0.2}}>
+                            <Text style={{color:'#333'}}>新密码</Text>
+                        </View>
                         <TextInput
-                            style={{color:'#cbb',width:screenW*0.4,padding:0,marginRight:screenW*0.1}}
+                            style={{color:'#aaa',width:screenW*0.4,padding:0,height:30,marginLeft:15}}
                             onChangeText={(password) => this.setState({password})}
                             placeholder='请输入新密码'
                             secureTextEntry={true}
@@ -154,10 +138,12 @@ export default class ModifyPassword extends Component {
                             value={this.state.password}
                             />
                     </View>
-                    <View style={{flexDirection: 'row',alignItems:'center',marginTop:6,marginLeft:screenW*0.2,marginBottom:20}}>
-                        <Text style={{marginRight:5}}>确认密码：</Text>
+                    <View style={{flexDirection: 'row',alignItems:'center',height:35,paddingLeft:5,paddingRight:5}}>
+                        <View style={{width:screenW*0.2}}>
+                            <Text style={{color:'#333'}}>确认密码</Text>
+                        </View>
                         <TextInput
-                            style={{color:'#cbb',width:screenW*0.4,padding:0,marginRight:screenW*0.1}}
+                            style={{color:'#aaa',width:screenW*0.4,padding:0,height:30,marginLeft:15}}
                             onChangeText={(confirmpwd) => this.setState({confirmpwd})}
                             placeholder='请输入确认密码'
                             secureTextEntry={true}

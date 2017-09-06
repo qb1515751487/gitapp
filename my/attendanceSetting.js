@@ -125,7 +125,7 @@ export default class AttendanceSetting extends Component {
         return (
             <View style={styles.ancestorCon}>
                 <View style={styles.container}>
-                    <TouchableHighlight underlayColor={'#fff'} style={[styles.goback,styles.go]} onPress={()=>this.OpBack()}>
+                    <TouchableHighlight underlayColor={'transparent'} style={[styles.goback,styles.go]} onPress={()=>this.OpBack()}>
                         <View style={{ flexDirection :'row',alignItems:'center',justifyContent:'center'}}>
                             <Image  style={styles.back_icon} source={require('../imgs/customer/back.png')}/>
                             <Text style={styles.back_text}>返回</Text>
@@ -133,7 +133,7 @@ export default class AttendanceSetting extends Component {
                     </TouchableHighlight>
                     <Text style={styles.formHeader}>设置考勤分组</Text>
                     <TouchableHighlight
-                         underlayColor={'#fff'}
+                         underlayColor={'transparent'}
                          style={[styles.goRight,styles.go]}
                          onPress={() => this._confirm()}
                         >
@@ -172,11 +172,11 @@ const styles = StyleSheet.create({
         top:8
     },
     goback:{
-        left:20,
+        left:15,
         flexDirection :'row',
     },
     goRight:{
-        right:20
+        right:15
     },
     back_icon:{
         width:10,

@@ -117,7 +117,7 @@ export default class AttendanceManage extends Component {
         var attendanceList = [];
         for(var i in attendance) {
             attendanceList.push(
-                <TouchableHighlight  key={i}  underlayColor={'#fff'} onPress={this.skipEdit.bind(this,'ManageEditGroup',{attendance:attendance[i],companyid:this.props.navigation.state.params.companyid})}>
+                <TouchableHighlight  key={i}  underlayColor={'transparent'} onPress={this.skipEdit.bind(this,'ManageEditGroup',{attendance:attendance[i],companyid:this.props.navigation.state.params.companyid})}>
                     <View key={i} style={[styles.common,styles.spaceBetween,styles.padding,styles.borderBottom]}>
                         <View>
                             <Text style={{color:'#333', fontSize:13}}>{attendance[i].groupname}</Text>
@@ -131,20 +131,20 @@ export default class AttendanceManage extends Component {
         return (
             <View style={styles.ancestorCon}>
                 <View style={styles.container}>
-                    <TouchableHighlight underlayColor={'#fff'} style={[styles.goback,styles.go]} onPress={()=>this.OpBack()}>
+                    <TouchableHighlight underlayColor={'transparent'} style={[styles.goback,styles.go]} onPress={()=>this.OpBack()}>
                         <View style={{ flexDirection :'row',alignItems:'center',justifyContent:'center'}}>
                             <Image  style={styles.back_icon} source={require('../imgs/customer/back.png')}/>
                             <Text style={styles.back_text}>返回</Text>
                         </View>
                     </TouchableHighlight>
                     <Text style={styles.formHeader}>考勤管理</Text>
-                    <TouchableHighlight underlayColor={'#fff'} style={[styles.goRight,styles.go]} onPress={() => { navigate('ManageNewGroup',{companyid:this.props.navigation.state.params.companyid});}}>
+                    <TouchableHighlight underlayColor={'transparent'} style={[styles.goRight,styles.go]} onPress={() => { navigate('ManageNewGroup',{companyid:this.props.navigation.state.params.companyid});}}>
                         <Text style={[styles.back_text,{color:'#e15151'}]}>新建</Text>
                     </TouchableHighlight>
                 </View>
                 <ScrollView>
                 <View style={[styles.borderBottom]}>
-                    <TouchableHighlight underlayColor={'#fff'} onPress={() => { navigate('AttendanceWhiteDetail',{companyid:3});}}>
+                    <TouchableHighlight underlayColor={'transparent'} onPress={() => { navigate('AttendanceWhiteDetail',{companyid:3});}}>
                         <View style={[styles.common,styles.spaceBetween,styles.padding]}>
                             <View>
                                 <Text style={{color:'#333', fontSize:13}}>考勤白名单</Text>
@@ -183,11 +183,11 @@ const styles = StyleSheet.create({
         top:8
     },
     goback:{
-        left:20,
+        left:15,
         flexDirection :'row',
     },
     goRight:{
-        right:20
+        right:15
     },
     back_icon:{
         width:10,

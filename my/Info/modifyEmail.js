@@ -19,6 +19,7 @@ import {
 import config from '../../common/config';
 import request from '../../common/request';
 import toast from '../../common/toast';
+import Header from '../../common/header';
 export default class ModifyEmail extends Component {
     //添加职位信息或修改
     constructor(props){
@@ -59,42 +60,21 @@ export default class ModifyEmail extends Component {
         const {params} = this.props.navigation.state;
         return (
             <View style={styles.ancestorCon}>
-                <View style={styles.container}>
-                    <TouchableOpacity
-                        onPress={()=>this.OpBack()}
-                        >
-                        <View style={styles.backAll} >
-                            <Image  style={styles.back} source={require('../../imgs/lljt.png')}/>
-                            <Text style={styles.backwz}>
-                                返回
-                            </Text>
-                        </View>
-                    </TouchableOpacity>
-                    <Text style={styles.info}
-                        >职位
-                    </Text>
-                    <TouchableHighlight
-                        onPress={()=>this.modifyEmail()}
-                        underlayColor="#d5d5d5"
-                        >
-                        <View>
-                            <Text
-                                onPress={this.modifyEmail.bind(this)} style={styles.infoSave}>
-                                保存
-                            </Text>
-                        </View>
-                    </TouchableHighlight>
-                </View>
-                <View style={styles.childContent} >
+                <Header navigation = {this.props.navigation}
+                        title = "邮箱"
+                        rightText = "保存"
+                        onPress={()=>this.OpBack()}/>
+                <View style={[styles.childContent,{marginTop:5, borderColor: '#F0F0F0', borderWidth: 1,backgroundColor:'#fff'}]} >
                     {(params.canshu.email=='' || params.canshu.email==null)?
                         (<TextInput
-                            style={{height: 40, borderColor: '#F0F0F0', borderWidth: 1,backgroundColor:'#fff'}}
+                            style={{height: 40,backgroundColor:'#fff',marginLeft:10}}
                             onChangeText={(email) => this.setState({email})}
                             placeholder={'邮箱'}
                             underlineColorAndroid={"transparent"}
+                            autoFocus={true}
                             value={this.state.email}
                             />) : (<TextInput
-                        style={{height: 40, borderColor: '#F0F0F0', borderWidth: 1,backgroundColor:'#fff'}}
+                        style={{height: 40, marginLeft:10,backgroundColor:'#fff'}}
                         onChangeText={(email) => this.setState({email})}
                         placeholder={params.canshu.email}
                         underlineColorAndroid={"transparent"}
@@ -113,42 +93,8 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#F0F1F2',
     },
-    container: {
-        borderWidth: 1,
-        borderColor: '#F0F1F2',
-        borderBottomColor: '#F0F0F0',
-        height: 35,
-        flexDirection: 'row',
-        alignItems: 'flex-start',
-        backgroundColor: '#fff',
-        marginBottom: 5,
-    },
-    backAll:{
-        width:60,
-        height:30,
-        flexDirection: 'row',
-        alignItems:'flex-start',
-    },
-    back: {
-        width:20,
-        height:20,
-        marginTop:7,
-    },
-    backwz: {
-        marginTop:7,
-        color: 'red',
-    },
-    info:{
-        marginLeft:screenW*0.3,
-        marginTop:7,
-    },
-    infoSave:{
-        marginLeft:screenW*0.37,
-        marginTop:7,
-        color:'red',
-    },
+
     childContent: {//子容器页面级
-        flex: 1
         //justifyContent: 'space-between',
     },
 });

@@ -19,6 +19,8 @@ import {
 import config from '../../common/config';
 import request from '../../common/request';
 import toast from '../../common/toast';
+import Header from '../../common/header';
+const screenW = Dimensions.get('window').width;
 export default class ModifyTel extends Component {
     //添加职位信息或修改
     constructor(props){
@@ -58,33 +60,23 @@ export default class ModifyTel extends Component {
         const {params} = this.props.navigation.state;
         return (
             <View style={styles.ancestorCon}>
-                <View style={styles.container}>
-                    <TouchableOpacity
-                        onPress={()=>this.OpBack()}
-                        >
-                        <View style={styles.backAll} >
-                            <Image  style={styles.back} source={require('../../imgs/lljt.png')}/>
-                            <Text style={styles.backwz}>
-                                返回
-                            </Text>
-                        </View>
-                    </TouchableOpacity>
-                    <Text style={styles.info}
-                        >手机号
-                    </Text>
-                </View>
-                <View style={styles.childContent} >
-                    <Image style={{width:60,height:60,marginTop:20,marginBottom:20}} source={require('../../imgs/my/changePhone.png')}/>
-                    <Text style={{marginBottom:20,color:'#000'}}>你的手机号：{params.canshu.tel}</Text>
-                    <Text style={{marginBottom:10,color:'#ccc',fontSize:12}}>如果不再使用当前手机号，请及时更换</Text>
+                <Header navigation = {this.props.navigation}
+                        title = "电话"
+                        rightText = "保存"
+                        onPress={()=>this.OpBack()}/>
+                <View style={[styles.childContent,{marginTop:5}]} >
+                    <Image style={{width:60,height:60,marginTop:20,marginBottom:15,tintColor:'#666'}} source={require('../../imgs/my/changePhone.png')}/>
+                    <Text style={{marginBottom:15,color:'#666'}}>你的手机号：{params.canshu.tel}</Text>
+                    <Text style={{marginBottom:15,color:'#ccc',fontSize:12}}>如果不再使用当前手机号，请及时更换</Text>
 
-                    <View style={{width:screenW*0.6,marginBottom:15,}}>
+                    <View style={{width:screenW*0.65,height: 28,marginBottom:15,borderWidth:1,borderColor:'#a1a1a1',paddingLeft:10,borderRadius:5,backgroundColor:'#f9f9f9'}}>
                         <TextInput
-                            style={{height: 30,borderColor: '#eeee', borderWidth: 1,backgroundColor:'#f9f9f9'}}
+                            style={{width:screenW*0.6,height: 25,borderColor: '#eeee', borderWidth: 1,padding:0,backgroundColor:'#f9f9f9'}}
                             onChangeText={(tel) => this.setState({tel})}
                             underlineColorAndroid={"transparent"}
                             placeholder='请输入您要修改的手机号码'
                             value={this.state.tel}
+
                             />
                     </View>
                     <TouchableHighlight
@@ -92,7 +84,7 @@ export default class ModifyTel extends Component {
                         underlayColor="#dadada"
                         >
                         <View style={[styles.changePhone,styles.childContent]}>
-                            <Text>更换手机号</Text>
+                            <Text style={{color:'#fff'}}>更换手机号</Text>
                         </View>
                     </TouchableHighlight>
                 </View>
@@ -100,55 +92,22 @@ export default class ModifyTel extends Component {
         );
     }
 }
-const screenW = Dimensions.get('window').width;
 const screenH = Dimensions.get('window').height;
 const styles = StyleSheet.create({
     ancestorCon: {
         flex: 1,
         backgroundColor: '#F0F1F2',
     },
-    container: {
-        borderWidth: 1,
-        borderColor: '#F0F1F2',
-        borderBottomColor: '#F0F0F0',
-        height: 35,
-        flexDirection: 'row',
-        alignItems: 'flex-start',
-        backgroundColor: '#fff',
-        marginBottom: 5,
-    },
-    backAll:{
-        width:60,
-        height:30,
-        flexDirection: 'row',
-        alignItems:'flex-start',
-    },
-    back: {
-        width:20,
-        height:20,
-        marginTop:7,
-    },
-    backwz: {
-        marginTop:7,
-        color: 'red',
-    },
-    info:{
-        marginLeft:screenW*0.3,
-        marginTop:7,
-    },
-    infoSave:{
-        marginLeft:screenW*0.37,
-        marginTop:7,
-        color:'red',
-    },
+
     childContent: {//子容器页面级
         justifyContent: 'center',
-        alignItems:'center'
+        alignItems:'center',
     },
     changePhone:{
         width:screenW*0.8,
-        backgroundColor:'#e15215',
+        backgroundColor:'#e15151',
         borderRadius:4,
         height:30,
+        marginTop:15
     },
 });

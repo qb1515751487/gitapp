@@ -22,6 +22,7 @@ import {
 import config from '../../common/config';
 import request from '../../common/request';
 import toast from '../../common/toast';
+import Header from '../../common/header';
 export default class ModifyAddress extends Component {
     //添加职位信息或修改
     constructor(props){
@@ -62,38 +63,17 @@ export default class ModifyAddress extends Component {
         const {params} = this.props.navigation.state;
         return (
             <View style={styles.ancestorCon}>
-                <View style={styles.container}>
-                    <TouchableOpacity
-                        onPress={()=>this.OpBack()}
-                        >
-                        <View style={styles.backAll} >
-                            <Image  style={styles.back} source={require('../../imgs/lljt.png')}/>
-                            <Text style={styles.backwz}>
-                                返回
-                            </Text>
-                        </View>
-                    </TouchableOpacity>
-                    <Text style={styles.info}
-                        >地址
-                    </Text>
-                    <TouchableHighlight
-                        onPress={()=>this.modifyAddress()}
-                        underlayColor="#d5d5d5"
-                        >
-                        <View>
-                            <Text
-                                onPress={this.modifyAddress.bind(this)} style={styles.infoSave}>
-                                保存
-                            </Text>
-                        </View>
-                    </TouchableHighlight>
-                </View>
-                <View style={styles.childContent} >
+                <Header navigation = {this.props.navigation}
+                        title = "地址"
+                        rightText = "保存"
+                        onPress={()=>this.OpBack()}/>
+                <View style={[styles.childContent,{marginTop:5}]} >
                     {(params.canshu.address=='' || params.canshu.address==null)?
                         (<TextInput
                             style={{height: 40, borderColor: '#F0F0F0', borderWidth: 1,backgroundColor:'#fff'}}
                             onChangeText={(address) => this.setState({address})}
                             placeholder={'地址'}
+                            autoFocus={true}
                             underlineColorAndroid={"transparent"}
                             value={this.state.address}
                             />) : (<TextInput
@@ -115,16 +95,6 @@ const styles = StyleSheet.create({
     ancestorCon: {
         flex: 1,
         backgroundColor: '#F0F1F2',
-    },
-    container: {
-        borderWidth: 1,
-        borderColor: '#F0F1F2',
-        borderBottomColor: '#F0F0F0',
-        height: 35,
-        flexDirection: 'row',
-        alignItems: 'flex-start',
-        backgroundColor: '#fff',
-        marginBottom: 5,
     },
     backAll:{
         width:60,

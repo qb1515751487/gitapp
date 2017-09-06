@@ -641,15 +641,15 @@ export default class ManageNewGroup extends Component {
                         </View>
                         <View style={styles.addCustomer2}>
                             <View style={[styles.addCustomer_card22]}>
-                                <View style={styles.customerCard_content22}>
+                                <View style={[styles.customerCard_content22,{alignItems:'flex-start',paddingLeft:25,paddingTop:5}]}>
                                     <Text style={{color:'#333'}}>请选择</Text>
                                 </View>
                                 <View style={styles.customerCard_content22}>
                                     <TouchableHighlight underlayColor={'#eee'}
-                                             style={styles.customerCard_content22}
-                                             onPress={() => { this.chooseDepart()}}
+                                                        style={styles.customerCard_content22}
+                                                        onPress={() => { this.chooseDepart()}}
                                         >
-                                        <Text style={{color:'#333',marginLeft:30}}>添加部门</Text>
+                                        <Text style={{color:'#333'}}>添加部门</Text>
                                     </TouchableHighlight>
                                 </View>
                                 <View style={styles.customerCard_content22}>
@@ -657,11 +657,11 @@ export default class ManageNewGroup extends Component {
                                                         style={styles.customerCard_content22}
                                                         onPress={() => { this.chooseStaffs()}}
                                         >
-                                        <Text style={{color:'#333',marginLeft:30}}>添加员工</Text>
+                                        <Text style={{color:'#333'}}>添加员工</Text>
                                     </TouchableHighlight>
                                 </View>
                                 <View  style={[styles.customerCard_content22,styles.customerCard_content23,{marginLeft:screenW*0.65}]}>
-                                    <TouchableHighlight underlayColor={'#eee'} style={styles.customerCard_content22} onPress={() => { this.setHandleModal(!this.state.handle)}}>
+                                    <TouchableHighlight underlayColor={'transparent'} style={[styles.customerCard_content22,{alignItems:'flex-start'}]} onPress={() => { this.setHandleModal(!this.state.handle)}}>
                                         <Text  style={{color:'green'}}>取消</Text>
                                     </TouchableHighlight>
                                 </View>
@@ -693,11 +693,11 @@ const styles = StyleSheet.create({
         top:8,
     },
     goback:{
-        left:1,
+        left:15,
         flexDirection :'row',
     },
     goRight:{
-        right:20
+        right:15
     },
     back_icon:{
         width:10,
@@ -707,7 +707,7 @@ const styles = StyleSheet.create({
     back_text:{
         color:'#e15151',
         fontSize: 16,
-        marginLeft:3
+        marginLeft:5
     },
     formHeader:{
         fontSize:16,
@@ -808,8 +808,8 @@ const styles = StyleSheet.create({
     customerCard_content22:{
         justifyContent:'center',
         height:30,
-        width:screenW,
-        paddingLeft:20
+        alignItems:'center',
+        width:screenW*0.9,
     },
     customerCard_content23:{
         borderBottomWidth:0,

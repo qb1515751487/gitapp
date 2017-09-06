@@ -197,20 +197,21 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#F8F8F8',
     },
-
     searchInfo:{
         margin: 10,
-        backgroundColor:'#fff',
+        backgroundColor:'#f5f5f5',
         borderWidth:1,
-        borderColor:'#fff',
+        borderColor:'#f0f0f0',
+        width:ScreenW-20,
         height:30,
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent:'center',
+        borderRadius:5
     },
     searchPhoto:{
         width:15,
         height:15,
-        marginLeft:120,
         marginRight:10,
     },
     searchText:{

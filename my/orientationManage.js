@@ -35,7 +35,7 @@ export default class OrientationManage extends Component {
         return (
             <View style={styles.ancestorCon}>
                 <View style={styles.container}>
-                    <TouchableHighlight underlayColor={'#fff'} style={[styles.goback,styles.go]} onPress={()=>this.OpBack()}>
+                    <TouchableHighlight underlayColor={'transparent'} style={[styles.goback,styles.go]} onPress={()=>this.OpBack()}>
                         <View style={{ flexDirection :'row',alignItems:'center',justifyContent:'center'}}>
                             <Image  style={styles.back_icon} source={require('../imgs/customer/back.png')}/>
                             <Text style={styles.back_text}>返回</Text>
@@ -44,7 +44,7 @@ export default class OrientationManage extends Component {
                     <Text style={styles.formHeader}>{state.params.title}</Text>
                 </View>
                 <View style={[styles.borderBottom,styles.borderColor,]}>
-                    <TouchableHighlight underlayColor={'#fff'} onPress={() => { navigate('Myself',{ title: '考勤管理'});}}>
+                    <TouchableHighlight underlayColor={'transparent'} onPress={() => { navigate('Myself',{ title: '考勤管理'});}}>
                         <View style={[styles.common,styles.spaceBetween,styles.padding]}>
                             <View style={[styles.common]}>
                                 <Image style={{width:35,height:35,}} source={require('../imgs/my/company_1.png')}/>
@@ -58,7 +58,7 @@ export default class OrientationManage extends Component {
                     </TouchableHighlight>
                 </View>
                 <View style={[styles.borderBottom,styles.borderColor,]}>
-                    <TouchableHighlight underlayColor={'#fff'} onPress={() => { navigate('Myself',{ title: '考勤管理'});}}>
+                    <TouchableHighlight underlayColor={'transparent'} onPress={() => { navigate('Myself',{ title: '考勤管理'});}}>
                         <View style={[styles.common,styles.spaceBetween,styles.padding]}>
                             <View style={[styles.common]}>
                                 <Image style={{width:35,height:35,}} source={require('../imgs/my/company_1.png')}/>
@@ -72,7 +72,7 @@ export default class OrientationManage extends Component {
                     </TouchableHighlight>
                 </View>
                 <View style={[styles.borderBottom,styles.borderColor,]}>
-                    <TouchableHighlight underlayColor={'#fff'} onPress={() => { navigate('Myself',{ title: '考勤管理'});}}>
+                    <TouchableHighlight underlayColor={'transparent'} onPress={() => { navigate('Myself',{ title: '考勤管理'});}}>
                         <View style={[styles.common,styles.spaceBetween,styles.padding]}>
                             <View style={[styles.common]}>
                                 <Image style={{width:35,height:35,}} source={require('../imgs/my/company_1.png')}/>
@@ -109,11 +109,11 @@ const styles = StyleSheet.create({
         top:8
     },
     goback:{
-        left:20,
+        left:15,
         flexDirection :'row',
     },
     goRight:{
-        right:20
+        right:15
     },
     back_icon:{
         width:10,

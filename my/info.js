@@ -11,6 +11,7 @@ import {
     Image,
     ScrollView,
     TouchableOpacity,
+    TouchableHighlight,
     Dimensions,
     Modal,
     DeviceEventEmitter,
@@ -19,6 +20,7 @@ import config from '../common/config';
 import request from '../common/request';
 import toast from '../common/toast';
 import ImagePicker from 'react-native-image-crop-picker';
+import Header from '../common/header';
 export default class Info extends Component {
 
     //查询个人信息
@@ -197,87 +199,75 @@ export default class Info extends Component {
     render() {
         return (
             <View style={styles.ancestorCon}>
-                <View style={styles.container}>
-                    <TouchableOpacity
-                        onPress={()=>this.OpBack()}
-                        >
-                        <View style={styles.backAll} >
-                            <Image  style={styles.back} source={require('../imgs/lljt.png')}/>
-                            <Text style={styles.backwz}>
-                                返回
-                            </Text>
-                        </View>
-                    </TouchableOpacity>
-                    <Text style={styles.info}
-                        >个人信息
-                    </Text>
-                </View>
+                <Header navigation = {this.props.navigation}
+                        title = "个人信息"
+                        onPress={()=>this.OpBack()}/>
                 <ScrollView style={styles.childContent}>
-                    <TouchableOpacity
-                        onPress={() => {this.setState({visibleModal: !this.state.visibleModal})}}
-                    >
-                        <View style={[styles.TotalSetting1,{marginBottom:10}]}>
-                                <Text>头像</Text>
-                                <View style={styles.dingwei}>
-                                    {(this.state.avatar == '' || this.state.avatar == null) ?
-                                        (<Image style={styles.myself} source={require('../imgs/avatar.png')}/>)
-                                        : (<Image style={styles.myself} source={{uri:this.state.avatar}}/>)
-                                    }
-                                    <Image style={styles.rjt} source={require('../imgs/rjt.png')}/>
-                                </View>
+                    <TouchableHighlight underlayColor={'#666'}
+                                        onPress={() => {this.setState({visibleModal: !this.state.visibleModal})}}
+                        >
+                        <View style={[styles.TotalSetting1,{height:50,}]}>
+                            <Text style={{color:'#333'}}>头像</Text>
+                            <View style={styles.dingwei}>
+                                {(this.state.avatar == '' || this.state.avatar == null) ?
+                                    (<Image style={styles.myself} source={require('../imgs/avatar.png')}/>)
+                                    : (<Image style={styles.myself} source={{uri:this.state.avatar}}/>)
+                                }
+                                <Image style={{width:12,height:12,marginLeft:10,tintColor:'#888'}} source={require('../imgs/customer/arrow_r.png')}/>
+                            </View>
                         </View>
-                    </TouchableOpacity>
-                    <View style={[styles.TotalSetting]}>
-                        <View style={[styles.TotalSetting1]}>
-                            <Text>姓名</Text>
+                    </TouchableHighlight>
+                    <View style={[styles.TotalSetting,{marginTop:10}]}>
+                        <View style={[styles.TotalSetting1,{borderTopWidth:1}]}>
+                            <Text style={{color:'#333'}}>姓名</Text>
                             <Text style={{marginRight:16}}>{this.state.name}</Text>
                         </View>
-                        <TouchableOpacity onPress={()=>this.tel()}>
+                        <TouchableHighlight underlayColor={'#666'} onPress={()=>this.tel()}>
                             <View style={[styles.TotalSetting1]}>
-                                <Text>电话</Text>
+                                <Text style={{color:'#333'}}>电话</Text>
                                 <View style={styles.dingwei}>
-                                    {(this.state.tel == null || this.state.tel=='')? (<Text >
+                                    {(this.state.tel == null || this.state.tel=='')? (<Text>
                                         未填写</Text>):(<Text>{this.state.tel}</Text>)}
-                                    <Image style={styles.rjt} source={require('../imgs/rjt.png')}/>
+                                    <Image style={{width:12,height:12,marginLeft:10,tintColor:'#888'}} source={require('../imgs/customer/arrow_r.png')}/>
                                 </View>
                             </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={()=>this.email()}>
+                        </TouchableHighlight>
+                        <TouchableHighlight underlayColor={'#666'} onPress={()=>this.email()}>
                             <View style={[styles.TotalSetting1]}>
-                                <Text>邮箱</Text>
+                                <Text style={{color:'#333'}}>邮箱</Text>
                                 <View style={styles.dingwei}>
                                     {(this.state.email == null || this.state.email=='')? (<Text>
                                         未填写</Text>):(<Text>{this.state.email}</Text>)}
-                                    <Image style={styles.rjt} source={require('../imgs/rjt.png')}/>
+                                    <Image style={{width:12,height:12,marginLeft:10,tintColor:'#888'}} source={require('../imgs/customer/arrow_r.png')}/>
                                 </View>
                             </View>
-                        </TouchableOpacity>
+                        </TouchableHighlight>
                         <View style={[styles.TotalSetting1]}>
-                            <Text>部门</Text>
-                            {(this.state.department == null || this.state.department=='')? (<Text style={{marginRight:10}}>
-                                未填写</Text>):(<Text style={{marginRight:16}}>{this.state.department}</Text>)}
+                            <Text style={{color:'#333'}}>部门</Text>
+                            {(this.state.department == null || this.state.department=='')? (<Text style={{marginRight:20}}>
+                                未填写</Text>):(<Text style={{marginRight:20}}>{this.state.department}</Text>)}
                         </View>
-                        <TouchableOpacity onPress={()=>this.position()}>
+                        <TouchableHighlight underlayColor={'#666'} onPress={()=>this.position()}>
                             <View style={[styles.TotalSetting1]}>
-                                <Text>职位</Text>
+                                <Text style={{color:'#333'}}>职位</Text>
                                 <View style={styles.dingwei}>
                                     {(this.state.position == null || this.state.position=='')? (<Text>
                                         未填写</Text>):(<Text>{this.state.position}</Text>)}
-                                    <Image style={styles.rjt} source={require('../imgs/rjt.png')}/>
+                                    <Image style={{width:12,height:12,marginLeft:10,tintColor:'#888'}} source={require('../imgs/customer/arrow_r.png')}/>
                                 </View>
                             </View>
-                        </TouchableOpacity>
+                        </TouchableHighlight>
                     </View>
-                    <TouchableOpacity onPress={()=>this.address()}>
-                        <View style={[styles.TotalSetting1]}>
-                            <Text>地址</Text>
+                    <TouchableHighlight underlayColor={'#666'} onPress={()=>this.address()}>
+                        <View style={[styles.TotalSetting1,{borderTopWidth:1}]}>
+                            <Text style={{color:'#333'}}>地址</Text>
                             <View style={styles.dingwei}>
                                 {(this.state.address == null || this.state.address=='')? (<Text>
                                     未填写</Text>):(<Text>{this.state.address}</Text>)}
-                                <Image style={styles.rjt} source={require('../imgs/rjt.png')}/>
+                                <Image style={{width:12,height:12,marginLeft:10,tintColor:'#888'}} source={require('../imgs/customer/arrow_r.png')}/>
                             </View>
                         </View>
-                    </TouchableOpacity>
+                    </TouchableHighlight>
                 </ScrollView>
                 <View>
                     <Modal

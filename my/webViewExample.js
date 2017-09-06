@@ -14,7 +14,7 @@ import {
     } from 'react-native';
 
 const {width, height} = Dimensions.get('window');
-
+import Header from '../common/header';
 const url = "http://www.qichacha.com/";
 export default class WebViewExample extends Component {
 
@@ -27,29 +27,10 @@ export default class WebViewExample extends Component {
     render() {
         return (
             <View style={styles.ancestorCon}>
-                <View style={styles.container}>
-                        <View style={styles.backAll} >
-                            <TouchableOpacity
-                                onPress={()=>this.OpBack()}
-                                >
-                                <Image  style={styles.back} source={require('../imgs/lljt.png')}/>
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                    onPress={()=>this.OpBack()}
-                                    >
-                                <Text style={styles.backwz}>
-                                    返回
-                                </Text>
-                            </TouchableOpacity>
-                            <Text style={styles.close} onPress={()=>this.OpBack()}>
-                                关闭
-                            </Text>
-                        </View>
-
-                    <Text style={styles.info}
-                        >企业工商信息
-                    </Text>
-                </View>
+                <Header navigation = {this.props.navigation}
+                        title = "企业工商查询"
+                        rightText = "关闭"
+                        onPress={()=>this.OpBack()}/>
                 <WebView
                     style={{width:width,height:height-20,backgroundColor:'#F0F1F2'}}
                     source={{uri:url,method: 'GET'}}
@@ -67,39 +48,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#F0F1F2',
     },
-    container: {
-        borderWidth: 1,
-        borderColor:'#F0F1F2',
-        borderBottomColor:'#F0F0F0',
-        height: 35,
-        flexDirection: 'row',
-        alignItems: 'flex-start',
-        backgroundColor: '#fff',
-        marginBottom:10,
-    },
-    backAll:{
-        width:90,
-        height:30,
-        flexDirection: 'row',
-        alignItems:'flex-start',
-    },
-    back: {
-        width:20,
-        height:20,
-        marginTop:7,
-    },
-    backwz: {
-        marginTop:7,
-        color: 'red',
-    },
-    close:{
-        marginTop:7,
-        marginLeft:10,
-        color: 'red',
-    },
-    info: {
-        marginLeft:70,
-        marginTop:7,
-    },
+
 });
 

@@ -16,11 +16,13 @@ import {
     View,
     Image,
     ScrollView,
+    Dimensions,
     TouchableOpacity
     } from 'react-native';
 import config from '../common/config';
 import request from '../common/request';
 import toast from '../common/toast';
+import Header from '../common/header';
 export default class accountsafe extends Component {
     OpBack() {
         this.props.navigation.goBack('AccountSafe')
@@ -67,40 +69,27 @@ export default class accountsafe extends Component {
     render() {
         return (
             <View style={styles.ancestorCon}>
-                <View style={styles.container}>
-                    <TouchableOpacity
-                        onPress={()=>this.OpBack()}
-                        >
-                        <View style={styles.backAll} >
-                            <Image  style={styles.back} source={require('../imgs/lljt.png')}/>
-                            <Text style={styles.backwz}>
-                                返回
-                            </Text>
-                        </View>
-                    </TouchableOpacity>
-                    <Text style={styles.info}
-                        >账号与安全
-                    </Text>
-                </View>
+                <Header navigation = {this.props.navigation}
+                        title = "账号与安全"
+                        onPress={()=>this.OpBack()}/>
                 <ScrollView style={styles.childContent}>
-                    <View style={[styles.TotalSetting]}>
+                    <View style={[styles.border_top,{marginTop:8}]}>
                         <TouchableOpacity
                             onPress={()=>this.tel()}
                             >
-                            <View style={[styles.TotalSetting1]}>
-                                <Text style={styles.wz2} >手机账号</Text>
-                                <Text style={styles.wz3} >{this.state.tel}</Text>
-                                <Image style={styles.rjt} source={require('../imgs/rjt.png')}/>
+                            <View style={[styles.flexRow,styles.padding,styles.border_bottom,{justifyContent:'space-between',height:35}]}>
+                                <Text style={{fontSize:15,color:'#333'}} >手机账号</Text>
+                                <Image style={{width:12,height:12,tintColor:'#888'}} source={require('../imgs/customer/arrow_r.png')}/>
                             </View>
                         </TouchableOpacity>
                     </View>
                     <TouchableOpacity
                         onPress={()=>this.password()}
                         >
-                        <View style={[styles.TotalSetting]}>
-                            <View style={[styles.TotalSetting1]}>
-                                <Text style={styles.wz2} >修改登录密码</Text>
-                                <Image style={styles.rjt} source={require('../imgs/rjt.png')}/>
+                        <View style={[styles.border_top,{marginTop:8}]}>
+                            <View style={[styles.flexRow,styles.padding,styles.border_bottom,{justifyContent:'space-between',height:35}]}>
+                                <Text style={{fontSize:15,color:'#333'}} >修改登录密码</Text>
+                                <Image style={{width:12,height:12,tintColor:'#888'}} source={require('../imgs/customer/arrow_r.png')}/>
                             </View>
                         </View>
                     </TouchableOpacity>
@@ -109,7 +98,8 @@ export default class accountsafe extends Component {
         );
     }
 }
-
+const screenW = Dimensions.get('window').width;
+const screenH = Dimensions.get('window').height;
 const styles = StyleSheet.create({
     ancestorCon:{
         flex: 1,
@@ -119,70 +109,26 @@ const styles = StyleSheet.create({
         flex: 1
         //justifyContent: 'space-between',
     },
-    container: {
-        borderWidth: 1,
-        borderColor:'#F0F1F2',
-        borderBottomColor:'#F0F0F0',
-        height: 35,
-        flexDirection: 'row',
-        alignItems: 'flex-start',
-        backgroundColor: '#fff',
-        marginBottom:5,
-    },
-    backAll:{
-        width:60,
-        height:30,
-        flexDirection: 'row',
-        alignItems:'flex-start',
-    },
-    back: {
-        width:20,
-        height:20,
-        marginTop:7,
-    },
-    backwz: {
-        marginTop:7,
-        color: 'red',
-    },
-    info:{
-        marginLeft:100,
-        marginTop:7,
-    },
-    TotalSetting: {
-        height:30,
-        marginBottom:10
-    },
-    TotalSetting1:{
-        height:30,
-        borderWidth: 1,
-        borderColor: '#fff',
-        borderBottomColor:'#F0F1F2',
+    flexRow:{
+        flexDirection:'row',
+        alignItems:'center',
         backgroundColor:'#fff',
-        justifyContent: 'center',
-        position:'relative'
     },
-    wz2: {
-        position:'absolute',
-        top:4,
-        left:5,
-        fontSize:12
+    flexRow_width:{
+        width:screenW*0.25,
+        justifyContent:'center',
+        alignItems:'center'
     },
-    rjt:{
-        width: 16,
-        height: 16,
-        position:'absolute',
-        top:4,
-        left:360
+    padding:{
+        paddingLeft:15,
+        paddingRight:15
     },
-    TotalSetting2: {
-        height:60,
-        marginBottom:10
+    border_top:{
+        borderTopWidth:1,
+        borderColor:'#e8e8e8'
     },
-    wz3:{
-        position:'absolute',
-        top:5,
-        right:30,
-        fontSize:12,
-        color:'#ccc',
+    border_bottom:{
+        borderBottomWidth:1,
+        borderColor:'#e8e8e8'
     },
 });

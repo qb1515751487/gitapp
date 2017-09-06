@@ -161,7 +161,7 @@ export default class ChooseDepart extends Component {
             departList.push(
                 <TouchableHighlight key={i}
                                     onPress={this._nextDepart.bind(this,departData[i].id,departData[i].depart_name)}
-                                    underlayColor={'#F3F3F3'}>
+                                    underlayColor={'transparent'}>
                     <View style={styles.listRowContent}>
                         <View style={styles.listRowSide}>
                             <CheckBox
@@ -190,7 +190,7 @@ export default class ChooseDepart extends Component {
             departList.push(
                 <TouchableHighlight key={i}
                                     onPress={this._selectDepart.bind(this,companyData[i].company_name)}
-                                    underlayColor={'#F3F3F3'}>
+                                    underlayColor={'transparent'}>
                     <View style={styles.listRowContent}>
                         <View style={styles.listRowSide}>
                             <CheckBox

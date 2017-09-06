@@ -18,8 +18,9 @@ import {
     TouchableNativeFeedback,
     TouchableHighlight,
     DeviceEventEmitter,
+    Dimensions,
 } from 'react-native';
-
+const screenW = Dimensions.get('window').width;
 import config from '../common/config';
 import request from '../common/request';
 import toast from '../common/toast';
@@ -95,142 +96,268 @@ export default class My extends Component {
     render() {
         return (
             <View style={styles.ancestorCon}>
-                <View style={styles.container}>
-                    <TouchableHighlight
-                        onPress={()=>this.reportInfo()}
-                        underlayColor="#A0A0A0"
-                        >
-                        <Image style={styles.report} source={require('../imgs/baobiao.png')}/>
-                    </TouchableHighlight>
-                    <Text style={styles.myselfTop}>我的</Text>
+                <View style={{height:40,backgroundColor:'#fff',borderBottomWidth:1,borderColor:"#ccc",flexDirection:'row',alignItems:'center',justifyContent:'space-between',paddingLeft:15,paddingRight:15}}>
+                    <View style={{width:25,height:25}}>
+                        <Image style={{width:25,height:25.5,tintColor:'#e15151'}} source={require('../imgs/bb.png')}/>
+                    </View>
+                    <View>
+                        <Text style={{color:'#333',fontSize:16}}>我的</Text>
+                    </View>
+                    <View  style={{width:25,height:25}}></View>
                 </View>
-
                 <ScrollView style={styles.childContent}>
                     {/*头部滚动模块*/}
                     <TouchableHighlight
+                        underlayColor={'#c5c5c5'}
                         onPress={() => this.props.navigation.navigate('Info', {id:this.state.id})}>
-                        <View style={[styles.topMoudel]}>
-                            {(this.state.avatar == '' || this.state.avatar ==null)?
-                                (<Image style={styles.myself} source={require('../imgs/avatar.png')}/>)
-                                :(<Image style={styles.myself} source={{uri:this.state.avatar}}/>)
-                            }
-                            <Text style={styles.info}>{this.state.name}</Text>
-                            <Image style={styles.mrjt} source={require('../imgs/rjt.png')}/>
+                        <View style={[styles.topMoudel,{justifyContent:'space-between',borderBottomWidth:1,borderColor:'#e8e8e8'}]}>
+                            <View style={{height:60,flexDirection:'row',alignItems:'center'}}>
+                                {(this.state.avatar == '' || this.state.avatar ==null)?
+                                    (<Image style={styles.myself} source={require('../imgs/avatar.png')}/>)
+                                    :(<Image style={styles.myself} source={{uri:this.state.avatar}}/>)
+                                }
+                                <Text style={styles.info}>{this.state.name}</Text>
+                            </View>
+                            <View>
+                                <Image style={{width:15,height:15,tintColor:'#888'}} source={require('../imgs/customer/arrow_r.png')}/>
+                            </View>
                         </View>
                     </TouchableHighlight>
-                    {/*顶部滚动模块*/}
-                    <View style={[styles.topDiv]}>
-                        {/*块级导航*/}
-                        <View style={[styles.DIV]}>
-                            <View style={[styles.DIVRowCon,styles.row,styles.rowSpaceBetween]}>
-                            <View style={[styles.DIVRowConDiv]}>
-                                <Image style={styles.DIVImg} source={require('../imgs/ld32.png')}/>
-                                <Text>理单</Text>
-                            </View>
-                            <View style={[styles.DIVRowConDiv]}>
-                                <Image style={styles.DIVImg} source={require('../imgs/ht32.png')}/>
-                                <Text>合同</Text>
-                            </View>
-                            <View style={[styles.DIVRowConDiv]}>
-                                <Image style={styles.DIVImg} source={require('../imgs/dd32.png')}/>
-                                <Text>订单</Text>
-                            </View>
-                            <View style={[styles.DIVRowConDiv]}>
-                                <Image style={styles.DIVImg} source={require('../imgs/mb32.png')}/>
-                                <Text>目标</Text>
-                            </View>
+                    <View style={[styles.border_top,styles.border_bottom,{backgroundColor:'#fff',marginTop:10,paddingTop:10,paddingBottom:10}]}>
+                        <View style={[styles.flexRow,{ height:70}]}>
+                            <TouchableHighlight
+                                onPress={()=>this.business()}
+                                underlayColor="transparent"
+                                >
+                                <View style={styles.flexRow_width}>
+                                    <Image style={styles.flexRow_Img} source={require('../imgs/sj32.png')}/>
+                                    <Text>商机</Text>
+                                </View>
+
+                            </TouchableHighlight>
+                            <TouchableHighlight
+                                onPress={()=>this.sheet()}
+                                underlayColor="transparent"
+                                >
+                                <View style={styles.flexRow_width}>
+                                    <Image style={styles.flexRow_Img} source={require('../imgs/ld32.png')}/>
+                                    <Text>理单</Text>
+                                </View>
+                            </TouchableHighlight>
+                            <TouchableHighlight
+                                onPress={()=>this.contract()}
+                                underlayColor="transparent"
+                                >
+                                <View style={styles.flexRow_width}>
+                                    <Image style={styles.flexRow_Img} source={require('../imgs/ht32.png')}/>
+                                    <Text>合同</Text>
+                                </View>
+                            </TouchableHighlight>
+                            <TouchableHighlight
+                                onPress={()=>this.order()}
+                                underlayColor="transparent"
+                                >
+                                <View style={styles.flexRow_width}>
+                                    <Image style={styles.flexRow_Img} source={require('../imgs/dd32.png')}/>
+                                    <Text>订单</Text>
+                                </View>
+                            </TouchableHighlight>
                         </View>
-                            <View style={[styles.DIVRowCon,styles.row,styles.rowSpaceBetween]}>
-                            <View style={[styles.DIVRowConDiv]}>
-                                <Image style={styles.DIVImg} source={require('../imgs/rz32.png')}/>
-                                <Text>日志</Text>
-                            </View>
-                            <View style={[styles.DIVRowConDiv]}>
-                                <Image style={styles.DIVImg} source={require('../imgs/gz32.png')}/>
-                                <Text>审批</Text>
-                            </View>
-                            <View style={[styles.DIVRowConDiv]}>
-                                <Image style={styles.DIVImg} source={require('../imgs/gg32.png')}/>
-                                <Text>公告</Text>
-                            </View>
-                            <View style={[styles.DIVRowConDiv]}>
-                                <Image style={styles.DIVImg} source={require('../imgs/xm32.png')}/>
-                                <Text>项目</Text>
-                            </View>
+                        <View style={[styles.flexRow,{ height:70}]}>
+                            <TouchableHighlight
+                                onPress={()=>this.op()}
+                                underlayColor="transparent"
+                                >
+                                <View style={styles.flexRow_width}>
+                                    <Image style={styles.flexRow_Img} source={require('../imgs/bb32i.png')}/>
+                                    <Text>报表</Text>
+                                </View>
+                            </TouchableHighlight>
+                            <TouchableHighlight
+
+                                onPress={()=>this.aim()}
+                                underlayColor="transparent"
+                                >
+                                <View style={styles.flexRow_width}>
+                                    <Image style={styles.flexRow_Img} source={require('../imgs/mb32.png')}/>
+                                    <Text>目标</Text>
+                                </View>
+                            </TouchableHighlight>
+                            <TouchableHighlight
+                                onPress={()=>this.approval()}
+                                underlayColor="transparent"
+                                >
+                                <View style={styles.flexRow_width}>
+                                    <Image style={styles.flexRow_Img} source={require('../imgs/gz32.png')}/>
+                                    <Text>审批</Text>
+                                </View>
+                            </TouchableHighlight>
+                            <TouchableHighlight
+
+                                onPress={()=>this.log()}
+                                underlayColor="transparent"
+                                >
+                                <View style={styles.flexRow_width}>
+                                    <Image style={styles.flexRow_Img} source={require('../imgs/rz32.png')}/>
+                                    <Text>日志</Text>
+                                </View>
+                            </TouchableHighlight>
                         </View>
-                            <View style={[styles.DIVRowCon,styles.row,styles.rowSpaceBetween,styles.bottomSpace]}>
-                            <View style={[styles.DIVRowConDiv]}>
-                                <Image style={styles.DIVImg} source={require('../imgs/xlbf32.png')}/>
-                                <Text>线路拜访</Text>
-                            </View>
-                            <View style={[styles.DIVRowConDiv]}>
-                                <Image style={styles.DIVImg} source={require('../imgs/kq32.png')}/>
-                                <Text>考勤</Text>
-                            </View>
-                            <View style={[styles.DIVRowConDiv]}>
-                                <Image style={styles.DIVImg} source={require('../imgs/cp32.png')}/>
-                                <Text>产品</Text>
-                            </View>
-                            <View style={[styles.DIVRowConDiv]}>
-                                <Image style={styles.DIVImg} source={require('../imgs/jgb32.png')}/>
-                                <Text>价格表</Text>
-                            </View>
+                        <View style={[styles.flexRow,{ height:70}]}>
+                            <TouchableHighlight
+                                onPress={()=>this.mustreach()}
+                                underlayColor="transparent"
+                                >
+                                <View style={styles.flexRow_width}>
+                                    <Image style={styles.flexRow_Img} source={require('../imgs/bd32.png')}/>
+                                    <Text>必达</Text>
+                                </View>
+                            </TouchableHighlight>
+                            <TouchableHighlight
+
+                                onPress={()=>this.notice()}
+                                underlayColor="transparent"
+                                >
+                                <View style={styles.flexRow_width}>
+                                    <Image style={styles.flexRow_Img} source={require('../imgs/gg32.png')}/>
+                                    <Text>公告</Text>
+                                </View>
+                            </TouchableHighlight>
+                            <TouchableHighlight
+
+                                onPress={()=>this.attendance()}
+                                underlayColor="transparent"
+                                >
+                                <View style={styles.flexRow_width}>
+                                    <Image style={styles.flexRow_Img} source={require('../imgs/kq32.png')}/>
+                                    <Text>考勤</Text>
+                                </View>
+                            </TouchableHighlight>
+                            <TouchableHighlight
+
+                                onPress={()=>this.lineVisit()}
+                                underlayColor="transparent"
+                                >
+                                <View style={styles.flexRow_width}>
+                                    <Image style={styles.flexRow_Img} source={require('../imgs/xlbf32.png')}/>
+                                    <Text>线路拜访</Text>
+                                </View>
+                            </TouchableHighlight>
                         </View>
+                        <View style={[styles.flexRow,{ height:70}]}>
+                            <TouchableHighlight
+
+                                onPress={()=>this.project()}
+                                underlayColor="transparent"
+                                >
+                                <View style={styles.flexRow_width}>
+                                    <Image  source={require('../imgs/xm32.png')}/>
+                                    <Text>项目</Text>
+                                </View>
+                            </TouchableHighlight>
+                            <TouchableHighlight
+                                onPress={()=>this.product()}
+                                underlayColor="transparent"
+                                >
+                                <View style={styles.flexRow_width}>
+                                    <Image  source={require('../imgs/cp32.png')}/>
+                                    <Text>产品</Text>
+                                </View>
+                            </TouchableHighlight>
+                            <TouchableHighlight
+                                onPress={()=>this.priceList()}
+                                underlayColor="transparent"
+                                >
+                                <View style={styles.flexRow_width}>
+                                    <Image
+                                        source={require('../imgs/jgb32.png')}/>
+                                    <Text>价格表</Text>
+                                </View>
+                            </TouchableHighlight>
+                            <TouchableHighlight
+                                onPress={()=>this.priceList()}
+                                underlayColor="transparent">
+                                <View style={styles.flexRow_width}>
+                                    <Image
+                                        source={require('../imgs/jgb32.png')}/>
+                                    <Text>价格表</Text>
+                                </View>
+                            </TouchableHighlight>
                         </View>
                     </View>
-                    <TouchableNativeFeedback
-                        onPress={()=>this.companyQuery()}
-                        >
-                        <View style={[styles.CommerceQuery]}>
-                            <Image style={styles.cx} source={require('../imgs/qyquery.png')}/>
-                            <Text style={styles.wz} >企业工商查询   </Text>
-                            <Image style={styles.rjt} source={require('../imgs/rjt.png')}/>
-                        </View>
-                    </TouchableNativeFeedback>
-                    <View style={[styles.TotalSetting]}>
+                    <View style={{marginTop:10,marginBottom:10}}>
                         <TouchableHighlight
-                        onPress={()=>this.companySetting()}
-                        >
-                            <View style={[styles.TotalSetting1]}>
-                                <Image style={styles.sz} source={require('../imgs/qysz.png')}/>
-                                <Text style={styles.wz} >企业设置</Text>
-                                <Image style={styles.rjt} source={require('../imgs/rjt.png')}/>
+                            onPress={()=>this.companyQuery()}
+                            underlayColor={'#c5c5c5'}
+                            >
+                            <View style={[styles.flexRow,styles.padding,styles.border_top,styles.border_bottom,{justifyContent:'space-between',height:35}]}>
+                                <View style={styles.flexRow}>
+                                    <Image style={{width:22,height:22,marginRight:15}} source={require('../imgs/qyquery.png')}/>
+                                    <Text style={{fontSize:15,color:'#333'}} >企业工商查询   </Text>
+                                </View>
+                                <Image style={{width:12,height:12,tintColor:'#888'}} source={require('../imgs/customer/arrow_r.png')}/>
+                            </View>
+                        </TouchableHighlight>
+                    </View>
+                    <View style={[styles.border_top,{marginBottom:10}]}>
+                        <TouchableHighlight
+                            onPress={()=>this.companySetting()}
+                            underlayColor={'#c5c5c5'}
+                            >
+                            <View style={[styles.flexRow,styles.padding,styles.border_bottom,{justifyContent:'space-between',height:35}]}>
+                                <View style={[styles.flexRow]}>
+                                    <Image style={{width:18,height:18,marginRight:15,tintColor:'#666'}} source={require('../imgs/my/qi.png')}/>
+                                    <Text style={{fontSize:15,color:'#333'}} >企业设置</Text>
+                                </View>
+                                <Image style={{width:12,height:12,tintColor:'#888'}} source={require('../imgs/customer/arrow_r.png')}/>
                             </View>
                         </TouchableHighlight>
                         <TouchableHighlight
                             onPress={()=>this.selfSetting()}
+                            underlayColor={'#c5c5c5'}
                             >
-                            <View style={[styles.TotalSetting1]}>
-                                <Image style={styles.sz} source={require('../imgs/grsz.png')}/>
-                                <Text style={styles.wz} >个人设置</Text>
-                                <Image style={styles.rjt} source={require('../imgs/rjt.png')}/>
+                            <View style={[styles.flexRow,styles.padding,styles.border_bottom,{justifyContent:'space-between',height:35}]}>
+                                <View style={styles.flexRow}>
+                                    <Image style={{width:17,height:17,marginRight:15,tintColor:'#666'}} source={require('../imgs/my/set.png')}/>
+                                    <Text style={{fontSize:15,color:'#333'}} >个人设置</Text>
+                                </View>
+                                <Image style={{width:12,height:12,tintColor:'#888'}} source={require('../imgs/customer/arrow_r.png')}/>
                             </View>
                         </TouchableHighlight>
                         <TouchableHighlight
                             onPress={()=>this.selfGrade()}
+                            underlayColor={'#c5c5c5'}
                             >
-                            <View style={[styles.TotalSetting1]}>
-                                <Image style={styles.sz} source={require('../imgs/wdjf.png')}/>
-                                <Text style={styles.wz} >我的积分</Text>
-                                <Image style={styles.rjt} source={require('../imgs/rjt.png')}/>
+                            <View style={[styles.flexRow,styles.padding,styles.border_bottom,{justifyContent:'space-between',height:35}]}>
+                                <View style={styles.flexRow}>
+                                    <Image style={{width:22,height:22,marginRight:15,tintColor:'#666'}} source={require('../imgs/my/jifen.png')}/>
+                                    <Text style={{fontSize:15,color:'#333'}} >我的积分</Text>
+                                </View>
+                                <Image style={{width:12,height:12,tintColor:'#888'}} source={require('../imgs/customer/arrow_r.png')}/>
                             </View>
                         </TouchableHighlight>
                         <TouchableHighlight
+                            underlayColor={'#c5c5c5'}
                             onPress={()=>this.selfSuccess()}
                             >
-                            <View style={[styles.TotalSetting1]}>
-                                <Image style={styles.sz} source={require('../imgs/wdcj.png')}/>
-                                <Text style={styles.wz} >我的成就</Text>
-                                <Image style={styles.rjt} source={require('../imgs/rjt.png')}/>
+                            <View style={[styles.flexRow,styles.padding,styles.border_bottom,{justifyContent:'space-between',height:35}]}>
+                                <View style={styles.flexRow}>
+                                    <Image style={{width:18,height:18,marginRight:15,tintColor:'#666'}} source={require('../imgs/my/chengjiu.png')}/>
+                                    <Text style={{fontSize:15,color:'#333'}} >我的成就</Text>
+                                </View>
+                                <Image style={{width:12,height:12,tintColor:'#888'}} source={require('../imgs/customer/arrow_r.png')}/>
                             </View>
                         </TouchableHighlight>
                         <TouchableHighlight
                             onPress={()=>this.explorde()}
+                            underlayColor={'#c5c5c5'}
                             >
-                            <View style={[styles.TotalSetting1]}>
-                                <Image style={styles.sz} source={require('../imgs/pytj.png')}/>
-                                <Text style={styles.wz} >推荐[手机OA]给朋友</Text>
-                                <Image style={styles.rjt} source={require('../imgs/rjt.png')}/>
+                            <View style={[styles.flexRow,styles.padding,styles.border_bottom,{justifyContent:'space-between',height:35}]}>
+                                <View style={styles.flexRow}>
+                                    <Image style={{width:18,height:18,marginRight:15,tintColor:'#666'}} source={require('../imgs/my/tuijian.png')}/>
+                                    <Text style={{fontSize:15,color:'#333'}} >推荐[手机OA]给朋友</Text>
+                                </View>
+                                <Image style={{width:12,height:12,tintColor:'#888'}} source={require('../imgs/customer/arrow_r.png')}/>
                             </View>
                         </TouchableHighlight>
                     </View>
@@ -245,162 +372,59 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#F0F1F2',
     },
-    container: {
-        //height: 40,
-        //flexDirection: 'row',
-        //justifyContent: 'space-between',
-        //alignItems: 'flex-start',
-        //backgroundColor: '#fff',
-        borderWidth: 1,
-        borderColor:'#F0F1F2',
-        borderBottomColor:'#F0F0F0',
-        //justifyContent: 'center',
-        height: 35,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'flex-start',
-        backgroundColor: '#fff',
-        padding: 5
-    },
-    report:{
-        paddingTop:3,
-        width:20,
-        height:20
-    },
-    myselfTop: {
-        color:'black',
-        fontSize:12,
-        paddingTop:4,
-        marginRight:180,
-    },
     childContent: {//子容器页面级
         flex: 1
         //justifyContent: 'space-between',
     },
     topMoudel:{
-        height:80,
+        height:60,
         backgroundColor:'#fff',
-        borderWidth: 1,
-        borderColor: '#fff',
-        position:'relative',
-        borderBottomColor:'#F0F0F0'
+        borderBottomWidth: 1,
+        borderBottomColor:'#F0F0F0',
+        flexDirection:'row',
+        alignItems:'center',
+        paddingLeft:15,
+        paddingRight:15
     },
     myself:{
-        position:'absolute',
-        top:18,
-        left:20,
         width:40,
         height:40
     },
     info:{
-        fontSize:12,
-        position:'absolute',
-        top:20,
-        left:65
+        fontSize:15,
+        marginLeft:15,
+        color:'#333'
     },
     mrjt:{
-        width: 16,
-        height: 16,
-        position:'absolute',
-        top:30,
-        left:360
-    },
-    topDiv: {
-        height: 230,
-        backgroundColor:'#fff',
-        margin: 10,
-        marginLeft:0,
-        marginRight:0,
-        marginBottom:0,
-        borderWidth: 1,
-        borderColor: '#fff',
-        justifyContent: 'space-between',
-        paddingTop: 10
-    },
-    row:{
-        flexDirection: 'row'
-    },
-    rowConCenter: {
-        justifyContent: 'center'//居中
-    },
-    rowSpaceBetween: {
-        justifyContent: 'space-between',//一行平均分布
-        padding: 10
-    },
-    DIV: {
-        height: 230,
-        paddingLeft:10,
-        paddingRight:15
-    },
-    DIVRowCon: {
-        height: 70,
-        borderBottomColor:'#F0F0F0',
-        borderBottomWidth:1,
-    },
-    DIVImg: {
-        marginBottom:5
-    },
-    DIVRowConDiv:{
-        height:70,
-        width:72,
-        alignItems: 'center'
-    },
-    bottomSpace:{
-        borderBottomColor:'#fff',
-        borderBottomWidth:0,
-    },
-    CommerceQuery: {
-        flex: 1,
-        height:25,
-        margin: 15,
-        marginTop: 10,
-        marginBottom:10,
-        marginLeft:0,
-        marginRight:0,
-        borderWidth: 1,
-        borderRadius: 5,
-        borderColor: '#fff',
-        backgroundColor:'#fff',
-        position:'relative',
-    },
-    TotalSetting: {
-        flex: 1
-    },
-    TotalSetting1:{
-        height:25,
-        borderWidth: 1,
-        borderColor: '#fff',
-        borderBottomColor:'#F0F1F2',
-        backgroundColor:'#fff',
-        justifyContent: 'center',
-        position:'relative'
-    },
-    cx: {
         width: 20,
         height: 20,
-        justifyContent: 'space-between',
-        position:'absolute',
-        top:1,
-        left:3
+        tintColor:'#888'
     },
-    sz: {//图标
-        width: 16,
-        height: 16,
-        justifyContent: 'space-between',
-        position:'absolute',
-        top:2,
-        left:3
+    flexRow:{
+        flexDirection:'row',
+        alignItems:'center',
+        backgroundColor:'#fff',
     },
-    wz: {
-        position:'absolute',
-        top:1,
-        left:30
+    flexRow_Img:{
+        width:30,
+        height:30,
+        marginBottom:2
     },
-    rjt:{
-        width: 16,
-        height: 16,
-        position:'absolute',
-        top:3,
-        left:360
-    }
+    flexRow_width:{
+        width:screenW*0.25,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    padding:{
+        paddingLeft:15,
+        paddingRight:15
+    },
+    border_top:{
+        borderTopWidth:1,
+        borderColor:'#e8e8e8'
+    },
+    border_bottom:{
+        borderBottomWidth:1,
+        borderColor:'#e8e8e8'
+    },
 });

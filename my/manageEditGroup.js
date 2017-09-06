@@ -536,14 +536,14 @@ export default class ManageEditGroup extends Component {
         return (
             <View style={styles.ancestorCon}>
                 <View style={styles.container}>
-                    <TouchableHighlight underlayColor={'#fff'} style={[styles.goback,styles.go]} onPress={()=>this.OpBack()}>
+                    <TouchableOpacity style={[styles.goback,styles.go]} onPress={()=>this.OpBack()}>
                         <View style={{ flexDirection :'row',alignItems:'center',justifyContent:'center'}}>
                             <Image  style={styles.back_icon} source={require('../imgs/customer/back.png')}/>
                             <Text style={styles.back_text}>返回</Text>
                         </View>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                     <Text style={styles.formHeader}>编辑分组</Text>
-                    <TouchableOpacity underlayColor={'#fff'} style={[styles.goRight,styles.go]}
+                    <TouchableOpacity style={[styles.goRight,styles.go]}
                                       onPress={()=>{this.save();}}
                         >
                         <Text style={[styles.back_text,{color:'#e15151'}]}>保存</Text>
